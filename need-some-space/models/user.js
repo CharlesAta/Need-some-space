@@ -3,10 +3,14 @@ let mongoose = require('mongoose');
 let userSchema = new mongoose.Schema({
     name: String,
     email: String,
-    articlesCreated: Array, 
+    articlesCreated: {
+        type: [mongoose.Schema.Types.ObjectId], 
+        ref: 'Article'
+    }, 
     googleId: String,
     avatar: String
-}, {
+}, 
+{
     timestamps: true
 });
 

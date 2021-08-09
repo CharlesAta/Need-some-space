@@ -1,10 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-const articlesCtrl = require('../controllers/articles')
-
-/* GET home page. */
-router.get('/', articlesCtrl.index);
 
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(
@@ -26,6 +22,5 @@ router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
-
 
 module.exports = router;

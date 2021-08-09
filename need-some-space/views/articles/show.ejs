@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<header>
+    <h2><%= article.title %> </h2>
+    <h3>Author: <%= article.author %></h3>
+    <h3>Source: <%= article.source %></h3>
+    <h3>Last modified: <%= lastMod %></h3>
+</header>
+<div>
+    <img src=<%= article.image %>>
+</div>
+
+<main>
+    <p>
+        <%= article.content %>
+    </p>
+</main>
+
+<%- include('../partials/footer') %>

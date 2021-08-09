@@ -3,12 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-let session = require('express-session')
+let session = require('express-session');
 let passport = require('passport');
+let bb = require('express-busboy');
 
 require('dotenv').config();
 
 var app = express();
+bb.extend(app, {
+  upload: true
+});
 
 // connect to the MongoDB with mongoose
 require('./config/database');
@@ -32,7 +36,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 app.use(passport.initialize());
-app.use(passport.session())
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/', articlesRouter);
