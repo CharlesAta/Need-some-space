@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+<h1>Profile</h1>
+<section>
+    <div>
+        <img src="<%= user.avatar %>">
+    </div>
+    <div>
+        <h3>Name: <%= user.name %></h3>
+        <h3>Name: <%= user.email %></h3>
+    </div>
+</section>
+
+<section>
+    <h2>Articles Created: </h2>
+    <% articles.forEach((article) => { %>
+    <a href="/articles/<%= article._id %>">
+        <div>
+            <h4><%= article.title %></h4>
+            <img src="<%= article.image %>" style="width: 100px; height: 100px;">
+        </div>
+    </a>
+    <% }); %>
+</section>
+<%- include('../partials/footer') %>

@@ -7,6 +7,7 @@ async function index(req, res) {
 
     let articles = await Article.find({});
     articles.sort((a, b) => b.createdAt - a.createdAt);
+    console.log(req.user);
     res.render('articles/index', { 
         user: req.user, 
         articles
@@ -53,6 +54,7 @@ async function edit(req, res) {
 }
 
 async function update(req, res) {
+    console.log(req.body);
     let article  = await Article.findById(req.params.id);
 
     if (!req.body.author) {

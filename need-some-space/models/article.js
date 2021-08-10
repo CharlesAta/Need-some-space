@@ -4,9 +4,13 @@ let mongoose = require('mongoose');
 let articleSchema = mongoose.Schema({
     title: {
         type: String,
-        minlength: 1
+        minlength: 1, 
+        maxlength: 60,
     },
-    author: String, 
+    author: {
+        type: String, 
+        maxlength: 30,
+    },
     source: String,
     image: {
         type: String,
