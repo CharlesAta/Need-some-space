@@ -1,7 +1,10 @@
 <%- include('../partials/header') %>
 <header>
-    <% if (user) { %>
+    <% if (user && user._id.toString() === originator._id.toString()) { %>
     <a href="/articles/<%= article._id %>/edit">Edit Post</a>
+    <form action="/articles/<%= article._id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete Post" />
+    </form>
     <% } %>
     <h2><%= article.title %> </h2>
     <h3>Author: <%= article.author %></h3>
@@ -11,7 +14,7 @@
     <h3>Last modified: <%= lastMod %></h3>
 </header>
 <div>
-    <img src=<%= article.image %>>
+    <img src="<%= article.image %>">
 </div>
 
 <main>
@@ -19,5 +22,44 @@
         <%= article.content %>
     </p>
 </main>
+
+<br><br>
+
+<section>
+    <h2>Comments</h2>
+
+    <% if (comments.length) { %>
+        <table>
+          <tbody>
+            <% comments.forEach((c) => { %>
+              <tr>
+                <td><%= c.username %></td>
+                <td><%= c.createdAt.toISOString().slice(0, 16) %></td>
+                <td><%= c.comment %></td>
+                <td><img src="<%= c.avatar %>" /></td>
+                <% if (user && user._id.toString() === c.commenter.toString()) { %>
+                <td>
+                    <form action="/articles/<%= article._id %>/comments/<%= c._id%>?_method=DELETE" method="POST">
+                        <input type="submit" value="X" />
+                    </form>
+                </td>
+                <% }; %>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+    <% } else { %>
+        <h5>No Comments Yet</h5>
+    <% } %>
+
+
+    <form method="POST" action="/articles/<%= article._id %>/comments">
+        <label for="comment">Comment:</label>
+        <textarea name="comment" placeholder="Add comment"></textarea>
+        <input type="submit" value="Post Comment">
+    </form>
+
+
+</section>
 
 <%- include('../partials/footer') %>

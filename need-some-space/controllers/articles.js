@@ -1,12 +1,12 @@
 const Article = require('../models/article');
 const User = require('../models/user');
+const Comment = require('../models/comment');
 const uploadCtrl = require('./upload');
 
 async function index(req, res) {
-    console.log(req.user);
 
     let articles = await Article.find({});
-
+    articles.sort((a, b) => b.createdAt - a.createdAt);
     res.render('articles/index', { 
         user: req.user, 
         articles
@@ -27,21 +27,23 @@ async function create(req, res) {
     }
 
     let article  = new Article(req.body);
+    article.originator = req.user._id;
     await article.save();
     req.user.articlesCreated.push(article._id);
     await req.user.save();
-
-    console.log(article);
-    console.log(req.user);
 
     res.redirect('/')
 }
 
 async function show(req, res) {
     let article = await Article.findById(req.params.id);
+    let originator = await User.findById(article.originator);
+
+    let comments = await Comment.where('_id').in(article.comments);
+
     let lastMod = article.createdAt.toISOString().slice(0, 16);
 
-    res.render('articles/show', { article, user: req.user, lastMod })
+    res.render('articles/show', { article, user: req.user, lastMod, originator, comments })
 }
 
 async function edit(req, res) {
@@ -53,8 +55,6 @@ async function edit(req, res) {
 async function update(req, res) {
     let article  = await Article.findById(req.params.id);
 
-    console.log("looking into update", article)
-    console.log("looking into update re bod", req.body)
     if (!req.body.author) {
         article.author = req.user.name;
     } else {
@@ -73,9 +73,24 @@ async function update(req, res) {
 
     let lastMod = article.updatedAt.toISOString().slice(0, 16);
 
-    console.log(article);
-
     res.render('articles/show', { user: req.user, article, lastMod })
+}
+
+async function deleteArticle(req, res) {
+    let article = await Article.findById(req.params.id);
+    let user = await User.findById(req.user._id);
+    if (article.originator.toString() === req.user._id.toString()) {
+        let articleIdx = user.articlesCreated.indexOf(article._id);
+        user.articlesCreated.splice(articleIdx, 1);
+        await user.save();
+        await Comment.deleteMany({ '_id': { $in: article.comments } });
+        await Article.deleteOne({'_id': req.params.id});
+    }
+    let comments = await Comment.find({})
+    console.log(user);
+    console.log(comments);
+
+    res.redirect('/');
 }
 
 module.exports = {
@@ -84,5 +99,6 @@ module.exports = {
     create, 
     show,
     edit,
-    update, 
+    update,
+    delete: deleteArticle,
 }

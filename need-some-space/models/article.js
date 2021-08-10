@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 
+
 let articleSchema = mongoose.Schema({
     title: {
         type: String,
@@ -16,11 +17,19 @@ let articleSchema = mongoose.Schema({
         minlength: 1,
         maxlength: 20000,
     },
-    comments: Array,
-    likes: Number
-}, 
-{
-    timestamps: true
-});
+    likes: Number,
+    originator: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User'
+    },
+    comments: {
+        type: [mongoose.Schema.Types.ObjectId], 
+        ref: 'Comment'
+    },
+},
+    {
+        timestamps: true
+    },
+);
 
 module.exports = mongoose.model('Article', articleSchema);
