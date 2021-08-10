@@ -1,8 +1,13 @@
 <%- include('../partials/header') %>
 <header>
+    <% if (user) { %>
+    <a href="/articles/<%= article._id %>/edit">Edit Post</a>
+    <% } %>
     <h2><%= article.title %> </h2>
     <h3>Author: <%= article.author %></h3>
-    <h3>Source: <%= article.source %></h3>
+    <% if (article.source) { %>
+    <h3><a href="<%= article.source %>" target="_blank">Source</a></h3>
+    <% } %>
     <h3>Last modified: <%= lastMod %></h3>
 </header>
 <div>

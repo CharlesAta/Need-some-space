@@ -6,7 +6,6 @@ async function index(req, res) {
     console.log(req.user);
 
     let articles = await Article.find({});
-    console.log(articles)
 
     res.render('articles/index', { 
         user: req.user, 
@@ -22,9 +21,8 @@ async function create(req, res) {
     if (!req.body.author) {
         req.body.author = req.user.name;
     }    
-    console.log(req.files)
+
     if (Object.keys(req.files).length !== 0 && req.files.constructor === Object) {
-        console.log("I am being seen")
         req.body.image = await uploadCtrl.upload(req);
     }
 
@@ -41,9 +39,43 @@ async function create(req, res) {
 
 async function show(req, res) {
     let article = await Article.findById(req.params.id);
-    let lastMod = article.created.toISOString().slice(0, 16);;
+    let lastMod = article.createdAt.toISOString().slice(0, 16);
 
     res.render('articles/show', { article, user: req.user, lastMod })
+}
+
+async function edit(req, res) {
+    let article  = await Article.findById(req.params.id);
+    
+    res.render('articles/edit', { user: req.user, article })
+}
+
+async function update(req, res) {
+    let article  = await Article.findById(req.params.id);
+
+    console.log("looking into update", article)
+    console.log("looking into update re bod", req.body)
+    if (!req.body.author) {
+        article.author = req.user.name;
+    } else {
+        article.author = req.body.author;
+    }
+
+    if (Object.keys(req.files).length !== 0 && req.files.constructor === Object && !article.image) {
+        article.image = await uploadCtrl.upload(req);
+    }
+
+    article.title = req.body.title;
+    article.source = req.body.source;
+    article.content = req.body.content;
+
+    await article.save();
+
+    let lastMod = article.updatedAt.toISOString().slice(0, 16);
+
+    console.log(article);
+
+    res.render('articles/show', { user: req.user, article, lastMod })
 }
 
 module.exports = {
@@ -51,4 +83,6 @@ module.exports = {
     new: newArticle, 
     create, 
     show,
+    edit,
+    update, 
 }

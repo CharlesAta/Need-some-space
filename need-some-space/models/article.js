@@ -14,14 +14,7 @@ let articleSchema = mongoose.Schema({
     content: {
         type: String,
         minlength: 1,
-        maxlength: 20000
-    },
-    created: {
-        type: Date,
-        default: function() {
-            let date = new Date();
-            return date;
-        }
+        maxlength: 20000,
     },
     comments: Array,
     likes: Number

@@ -6,6 +6,7 @@ var logger = require('morgan');
 let session = require('express-session');
 let passport = require('passport');
 let bb = require('express-busboy');
+let methodOverride = require('method-override');
 
 require('dotenv').config();
 
@@ -25,6 +26,7 @@ var articlesRouter = require('./routes/articles');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
