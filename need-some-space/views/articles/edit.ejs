@@ -1,5 +1,6 @@
 <%- include('../partials/header') %>
 <h1>Edit Article</h1>
+<div class="container">
 <form action="/articles/<%= article._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
     <label for="title">Title:
         <input type="text" name="title" placeholder="Enter article title" value="<%= article.title %>" required>
@@ -16,6 +17,7 @@
     <label for="content">
         <textarea name="content" placeholder="Enter article content" required><%= article.content %></textarea>
     </label>
-    <input type="submit" value="Update Article">
-    </form>
+    <button class="btn-large green lighten-2" type="submit"><i class="large material-icons left">update</i>Update</button>
+</form>
+</div>
 <%- include('../partials/footer') %>

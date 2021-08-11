@@ -5,14 +5,6 @@ const uploadCtrl = require('./upload');
 
 const axios = require('axios');
 
-// const Pusher = require('pusher');
-// let pusher = new Pusher({
-//   appId: process.env.PUSHER_APP_ID,
-//   key: process.env.PUSHER_APP_KEY,
-//   secret: process.env.PUSHER_APP_SECRET,
-//   cluster: process.env.PUSHER_APP_CLUSTER
-// });
-
 const nasaAPOD_rootURL = 'https://api.nasa.gov/planetary/apod?api_key=';
 
 async function index(req, res) {
@@ -68,6 +60,8 @@ async function edit(req, res) {
 
 async function update(req, res) {
     let article  = await Article.findById(req.params.id);
+    let originator = await User.findById(article.originator);
+    let comments = await Comment.where('_id').in(article.comments);
 
     if (!req.body.author) {
         article.author = req.user.name;
@@ -87,7 +81,7 @@ async function update(req, res) {
 
     let lastMod = article.updatedAt.toISOString().slice(0, 16);
 
-    res.render('articles/show', { user: req.user, article, lastMod })
+    res.render('articles/show', { user: req.user, article, lastMod, originator, comments })
 }
 
 async function deleteArticle(req, res) {
@@ -119,9 +113,7 @@ async function like(req, res) {
             {})
         console.log("Unliked", await Article.findById(req.params.id))
     }
-      
-    
-    // await pusher.trigger('post-events', 'postAction', { action: action, postId: req.params.id }, req.body.socketId);
+
     res.send('');
 }
 

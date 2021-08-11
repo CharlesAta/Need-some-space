@@ -1,24 +1,33 @@
 <%- include('../partials/header') %>
 <h1>Profile</h1>
 <section>
-    <div>
-        <img src="<%= user.avatar %>">
+    <div class="container center-align">
+        <img class="circle" src="<%= user.avatar %>">
     </div>
     <div>
         <h3>Name: <%= user.name %></h3>
-        <h3>Name: <%= user.email %></h3>
+        <h3>Email: <%= user.email %></h3>
     </div>
 </section>
 
 <section>
     <h2>Articles Created: </h2>
-    <% articles.forEach((article) => { %>
-    <a href="/articles/<%= article._id %>">
-        <div>
-            <h4><%= article.title %></h4>
-            <img src="<%= article.image %>" style="width: 100px; height: 100px;">
+    <% if (articles) { %>
+    <div class="container">
+        <div class="row">
+            <% articles.forEach((article) => { %>
+            <div class="col s6 m3 l2">
+                <a href="/articles/<%= article._id %>">
+                    <div style="background-image: url(<%= article.image %>); background-size: cover; width: 100px; height: 100px;">
+                        <p class="flow-text truncate"><%= article.title %></p>
+                    </div>
+                </a>
+            </div>
+            <% }); %>
         </div>
-    </a>
-    <% }); %>
+    </div>
+    <% } else { %>
+        <h3>No articles created yet</h3>
+    <% } %>
 </section>
 <%- include('../partials/footer') %>

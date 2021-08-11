@@ -1,16 +1,20 @@
 <%- include('../partials/header') %>
+<div class="title">
+    <h1>need<br>some<br>space</h1>
+</div>
+
 <% if (nasaData) { %>
 <header>
 <h1>NASA Astronomy Photo of the Day</h1>
-<div style="background-image: url(<%= nasaData.url %>)">
-    <div>
+<div class="container" style="background-image: url(<%= nasaData.url %>)">
+    <div class="container">
         <h4>Title: <%= nasaData.title %></h4>
     </div>
-    <div>
+    <div class="container">
         <h6>Date: <%= nasaData.date %></h6>
         <h6>Copyright: <%= nasaData.copyright %></h6>
     </div>
-    <div>
+    <div class="container">
         <p>
             <%= nasaData.explanation %>
         </p>
@@ -23,13 +27,14 @@
 <% if (articles) { %>
     <% articles.forEach((article) => { %>
     <a href="/articles/<%= article._id %>">
-    <div style="background-image: url(<%= article.image %>)">
-        <h3><%= article.title %></h3>
+    <div class="container" style="background-image: url(<%= article.image %>)">
+        <h3 class="truncate"><%= article.title %></h3>
     </div>
     </a>
     <% }); %>
 <% } else { %>
     <h3>No articles yet</h3>
 <% } %>
+
 
 <%- include('../partials/footer') %>

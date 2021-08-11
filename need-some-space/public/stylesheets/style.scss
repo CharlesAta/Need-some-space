@@ -11,11 +11,15 @@
       transition-duration: 1s;
       background-position: -2800px 0;
     }
-  }
+}
   
-  .placement {
+.placement {
     position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
+
+#delete-btn {
+    display: inline;
+}

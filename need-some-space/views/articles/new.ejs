@@ -1,5 +1,6 @@
 <%- include('../partials/header') %>
 <h1>Create a New Article</h1>
+<div class="container">
 <form action="/articles" method="POST" enctype="multipart/form-data">
     <label for="title">Title:
         <input type="text" name="title" placeholder="Enter article title" maxlength="60" required>
@@ -16,6 +17,7 @@
     <label for="content">
         <textarea name="content" placeholder="Enter article content" maxlength="20000" required></textarea>
     </label>
-    <input type="submit" value="Post Article">
+    <button type="submit" class="btn light-green white-text waves-effect waves-yellow"><i class="material-icons left white-text">send</i>POST</button>
     </form>
+</div>
 <%- include('../partials/footer') %>

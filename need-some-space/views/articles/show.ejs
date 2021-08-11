@@ -1,9 +1,9 @@
 <%- include('../partials/header') %>
 <header>
     <% if (user && user._id.toString() === originator._id.toString()) { %>
-    <a href="/articles/<%= article._id %>/edit">Edit Post</a>
-    <form action="/articles/<%= article._id %>?_method=DELETE" method="POST">
-        <input type="submit" value="Delete Post" />
+    <a class="btn-large blue lighten-3 indigo-text text-darken-4" href="/articles/<%= article._id %>/edit"><i class="large material-icons left">edit</i>Edit</a>
+    <form id="delete-btn" action="/articles/<%= article._id %>?_method=DELETE" method="POST">
+        <button class="right btn-large red accent-1  brown-text text-darken-4" type="submit"><i class="large material-icons left">delete</i>Delete</button>
     </form>
     <% } %>
     <h2><%= article.title %> </h2>
@@ -21,7 +21,7 @@
         <div 
         onclick="actOnPost(event);"
         data-post-id="<%= article._id %>" 
-        class="heart <%= article.likedBy.indexOf(user._id) >= 0 ? 'is-active' : '' %>"><span style="display: none;"><%= article.likedBy.indexOf(user._id) >= 0 ? 'Unlike' : 'Like'  %></span></div>
+        class="heart <%= article.likedBy.indexOf(user._id) >= 0 ? 'is-active' : '' %>"><span class="hide"><%= article.likedBy.indexOf(user._id) >= 0 ? 'Unlike' : 'Like'  %></span></div>
         <span id="likes-count-<%= article._id %>"><%= article.likes %></span>
 </div>
 <% } %>
@@ -32,16 +32,18 @@
 </div>
 
 <main>
-    <p>
-        <%= article.content %>
-    </p>
+    <div class="container">
+        <p class="flow-text">
+            <%= article.content %>
+        </p>
+    </div>
 </main>
 
 <br><br>
 
 <section>
+    <div class="container">
     <h2>Comments</h2>
-
     <% if (comments.length) { %>
         <table>
           <tbody>
@@ -50,7 +52,7 @@
                 <td><%= c.username %></td>
                 <td><%= c.createdAt.toISOString().slice(0, 16) %></td>
                 <td><%= c.comment %></td>
-                <td><img src="<%= c.avatar %>" /></td>
+                <td><img class="circle" src="<%= c.avatar %>" /></td>
                 <% if (user && user._id.toString() === c.commenter.toString()) { %>
                 <td>
                     <form action="/articles/<%= article._id %>/comments/<%= c._id%>?_method=DELETE" method="POST">
@@ -62,16 +64,19 @@
             <% }) %>
           </tbody>
         </table>
+
     <% } else { %>
         <h5>No Comments Yet</h5>
     <% } %>
+    </div>
 
-
-    <form method="POST" action="/articles/<%= article._id %>/comments">
-        <label for="comment">Comment:</label>
-        <textarea name="comment" placeholder="Add comment"></textarea>
-        <input type="submit" value="Post Comment">
-    </form>
+    <div class="container">
+        <form method="POST" action="/articles/<%= article._id %>/comments">
+            <label for="comment">Comment:</label>
+            <textarea name="comment" placeholder="Add comment"></textarea>
+            <input type="submit" value="Post Comment">
+        </form>
+    </div>
 
 
 </section>

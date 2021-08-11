@@ -6,9 +6,7 @@ $(function() {
     });
   });
 
-
-// Pusher Like button
-var updatePostStats = {
+let updatePostStats = {
     Like: function (postId) {
         document.querySelector('#likes-count-' + postId).textContent++;
     },
@@ -17,7 +15,7 @@ var updatePostStats = {
     }
 };
 
-var toggleButtonText = {
+let toggleButtonText = {
     Like: function(span) {
         span.textContent = "Unlike";
     },
@@ -26,11 +24,20 @@ var toggleButtonText = {
     }
 };
 
-var actOnPost = function (event) {
+function actOnPost(event) {
     let spanEl = event.target.querySelector('span');
-    var postId = event.target.dataset.postId;
-    var action = spanEl.textContent.trim();
+    let postId = event.target.dataset.postId;
+    let action = spanEl.textContent.trim();
     toggleButtonText[action](spanEl);
     updatePostStats[action](postId);
     axios.post('/articles/' + postId + '/likes', { action: action });
 };
+
+// Nav Bar 
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    let options = {
+        edge, inDuration, outDuration, preventScrolling
+    } 
+    var instances = M.Sidenav.init(elems, options);
+  });
