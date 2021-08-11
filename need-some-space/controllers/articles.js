@@ -3,14 +3,27 @@ const User = require('../models/user');
 const Comment = require('../models/comment');
 const uploadCtrl = require('./upload');
 
-async function index(req, res) {
+const axios = require('axios');
 
+// const Pusher = require('pusher');
+// let pusher = new Pusher({
+//   appId: process.env.PUSHER_APP_ID,
+//   key: process.env.PUSHER_APP_KEY,
+//   secret: process.env.PUSHER_APP_SECRET,
+//   cluster: process.env.PUSHER_APP_CLUSTER
+// });
+
+const nasaAPOD_rootURL = 'https://api.nasa.gov/planetary/apod?api_key=';
+
+async function index(req, res) {
+    let nasaData = await getNasaAPOD();
+    console.log(nasaData);
     let articles = await Article.find({});
     articles.sort((a, b) => b.createdAt - a.createdAt);
-    console.log(req.user);
     res.render('articles/index', { 
         user: req.user, 
-        articles
+        articles, 
+        nasaData,
     });
 }
 
@@ -54,7 +67,6 @@ async function edit(req, res) {
 }
 
 async function update(req, res) {
-    console.log(req.body);
     let article  = await Article.findById(req.params.id);
 
     if (!req.body.author) {
@@ -88,11 +100,38 @@ async function deleteArticle(req, res) {
         await Comment.deleteMany({ '_id': { $in: article.comments } });
         await Article.deleteOne({'_id': req.params.id});
     }
-    let comments = await Comment.find({})
-    console.log(user);
-    console.log(comments);
 
     res.redirect('/');
+}
+
+async function like(req, res) {
+    const action = req.body.action;
+    const counter = action === 'Like' ? 1 : -1;
+    let article = await Article.findById(req.params.id);
+    if (article.likedBy.indexOf(req.user._id) === -1) {
+        await Article.update({_id: req.params.id},
+            {$inc: {likes: counter}, $addToSet: {likedBy: req.user._id}},
+            {})
+            console.log("Liked", await Article.findById(req.params.id))
+    } else {
+        await Article.update({_id: req.params.id},
+            {$inc: {likes: counter}, $pull: { likedBy: req.user._id}},
+            {})
+        console.log("Unliked", await Article.findById(req.params.id))
+    }
+      
+    
+    // await pusher.trigger('post-events', 'postAction', { action: action, postId: req.params.id }, req.body.socketId);
+    res.send('');
+}
+
+async function getNasaAPOD() {
+    try {
+        let nasaData = await axios.get(`${nasaAPOD_rootURL}${process.env.NASA_API_KEY}`)
+        return nasaData.data;
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 module.exports = {
@@ -103,4 +142,5 @@ module.exports = {
     edit,
     update,
     delete: deleteArticle,
+    like,
 }

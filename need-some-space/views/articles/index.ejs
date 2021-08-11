@@ -1,4 +1,24 @@
 <%- include('../partials/header') %>
+<% if (nasaData) { %>
+<header>
+<h1>NASA Astronomy Photo of the Day</h1>
+<div style="background-image: url(<%= nasaData.url %>)">
+    <div>
+        <h4>Title: <%= nasaData.title %></h4>
+    </div>
+    <div>
+        <h6>Date: <%= nasaData.date %></h6>
+        <h6>Copyright: <%= nasaData.copyright %></h6>
+    </div>
+    <div>
+        <p>
+            <%= nasaData.explanation %>
+        </p>
+    </div>
+</div>
+</header>
+<% } %>
+
 <h1>Articles</h1>
 <% if (articles) { %>
     <% articles.forEach((article) => { %>

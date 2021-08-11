@@ -22,6 +22,10 @@ let articleSchema = mongoose.Schema({
         maxlength: 20000,
     },
     likes: Number,
+    likedBy: {
+        type: [mongoose.Schema.Types.ObjectId], 
+        ref: 'User'
+    },
     originator: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'

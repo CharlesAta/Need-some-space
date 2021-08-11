@@ -22,16 +22,12 @@ async function deleteComment(req, res) {
     let article = await Article.findById(req.params.article_id);
     let comment = await Comment.findById(req.params.comment_id);
 
-    console.log(comment);
-
     if (comment.commenter.toString() === req.user._id.toString()) {
         let commentIdx = article.comments.indexOf(comment._id);
         article.comments.splice(commentIdx, 1);
         await article.save();
         await Comment.deleteOne({'_id': comment._id});
     }
-
-    console.log(article);
 
     res.redirect(`/articles/${article._id}`);
 }

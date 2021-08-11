@@ -16,10 +16,15 @@
 
 <br><br><br><br>
 
+<% if (user) { %>
 <div class="placement">
-        <div class="heart"></div>
+        <div 
+        onclick="actOnPost(event);"
+        data-post-id="<%= article._id %>" 
+        class="heart <%= article.likedBy.indexOf(user._id) >= 0 ? 'is-active' : '' %>"><span style="display: none;"><%= article.likedBy.indexOf(user._id) >= 0 ? 'Unlike' : 'Like'  %></span></div>
+        <span id="likes-count-<%= article._id %>"><%= article.likes %></span>
 </div>
-
+<% } %>
 
 
 <div>
