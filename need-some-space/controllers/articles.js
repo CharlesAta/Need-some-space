@@ -9,18 +9,18 @@ const nasaAPOD_rootURL = 'https://api.nasa.gov/planetary/apod?api_key=';
 
 async function index(req, res) {
     let nasaData = await getNasaAPOD();
-    console.log(nasaData);
     let articles = await Article.find({});
     articles.sort((a, b) => b.createdAt - a.createdAt);
     res.render('articles/index', { 
         user: req.user, 
         articles, 
         nasaData,
+        index: true,
     });
 }
 
 function newArticle(req, res) {
-    res.render('articles/new', { user: req.user });
+    res.render('articles/new', { user: req.user, });
 }
 
 async function create(req, res) {
@@ -46,7 +46,7 @@ async function show(req, res) {
     let originator = await User.findById(article.originator);
 
     let comments = await Comment.where('_id').in(article.comments);
-
+    console.log(comments)
     let lastMod = article.createdAt.toISOString().slice(0, 16);
 
     res.render('articles/show', { article, user: req.user, lastMod, originator, comments })

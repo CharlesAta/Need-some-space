@@ -14,33 +14,49 @@
   </head>
   <body>
     <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper blue-grey darken-3">
-          <div class="container">
-          <a href="/" class="brand-logo left">NEED SOME SPACE</a>
+      <nav id="nav-color" class=" <% if (typeof index !== 'undefined') { %> transparent <% } %> nav-wrapper">
+          <div class="container"><% if (typeof index === 'undefined') { %>
+          <a href="/" class="brand-logo">NEED SOME SPACE</a>
+          <% } %>
+          <a href="#" class="sidenav-trigger" data-target="mobile-links">
+            <i class="material-icons grey-text text-darken-1">menu</i>
+          </a>
           <!-- Add login UI here -->
-          <ul class="right hide-on-small-and-down">
+          <ul class="right hide-on-med-and-down">
             <% if (user) { %>
+
+              <li>
+                <a href="/#nasa-apod" class="<% if (typeof index !== 'undefined') { %> show-login <% } %>">NASA APOD</a>
+              </li>
+              <li>
+                <a href="/#articles" class="<% if (typeof index !== 'undefined') { %> show-login <% } %>">Articles</a>
+              </li>
             <li>
-              <a href="/articles/new">Create Article</a>
+              <a href="/articles/new" class="<% if (typeof index !== 'undefined') { %> show-login white-text <% } %>">Create Article</a>
             </li>
             <li>
-              <a href="/users/<%= user._id %>">Profile</a>
+              <a href="/users/<%= user._id %>" class="<% if (typeof index !== 'undefined') { %> show-login <% } else { %> btn-floating light-blue darken-3 waves-effect waves-orange <% } %>"><% if (typeof index !== 'undefined') { %>Profile<% } else { %><i class="material-icons  teal-text text-lighten-5">person</i><% } %></a>
             </li>
             <li>
-              <a href="/logout">Log Out</a>
+              <a href="/logout" class="<% if (typeof index !== 'undefined') { %> show-login white-text <% } %>">Log Out</a>
             </li>
             <% } else { %>
-            <li>
-              <a href="/auth/google">Login with Google</a>
-            </li>
+                <li>
+                  <a href="/#nasa-apod" class="<% if (typeof index !== 'undefined') { %> show-login <% } %>">NASA APOD</a>
+                </li>
+                <li>
+                  <a href="/#articles" class="<% if (typeof index !== 'undefined') { %> show-login <% } %>">Articles</a>
+                </li>
+                <li>
+                  <a href="/auth/google" class="<% if (typeof index !== 'undefined') { %> show-login white-text <% } %>">Login</a>
+                </li>
             <% } %>
           </ul>
         </div>
       </nav>
     </div>
 
-    <ul class="sidenav" id="mobile-demo">
+    <ul class="sidenav grey lighten-2" id="mobile-links">
       <% if (user) { %>
         <li>
           <a href="/articles/new">Create Article</a>
@@ -53,7 +69,7 @@
         </li>
         <% } else { %>
         <li>
-          <a href="/auth/google">Login with Google</a>
+          <a href="/auth/google">Login</a>
         </li>
         <% } %>
     </ul>

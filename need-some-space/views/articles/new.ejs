@@ -1,23 +1,50 @@
 <%- include('../partials/header') %>
-<h1>Create a New Article</h1>
 <div class="container">
-<form action="/articles" method="POST" enctype="multipart/form-data">
-    <label for="title">Title:
-        <input type="text" name="title" placeholder="Enter article title" maxlength="60" required>
-    </label><br>
-    <label for="author">Author:
-        <input type="text" name="author" placeholder="Enter article author" maxlength="30">
-    </label><br>
-    <label for="source">Source:
-        <input type="url" name="source" placeholder="Enter article source">
-    </label><br>
-    <label for="Image">Image:
-        <input type="file" name="image">
-    </label><br>
-    <label for="content">
-        <textarea name="content" placeholder="Enter article content" maxlength="20000" required></textarea>
-    </label>
-    <button type="submit" class="btn light-green white-text waves-effect waves-yellow"><i class="material-icons left white-text">send</i>POST</button>
-    </form>
+    <h1 class="flow-text">Create a New Article</h1>
+    <div class="row">
+        <form class="col s12 m12 l12" action="/articles" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <input class="validate" type="text" name="title" placeholder="Enter article title" maxlength="60" required>
+                    <label for="title">Title:</label>
+                    <span class="helper-text" data-error="please enter a title!" data-success="great title!"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <input class="validate" type="text" name="author" placeholder="Enter article author" maxlength="30">
+                    <label for="author">Author:</label>
+                    <span class="helper-text" data-error="wrong!" data-success="great!"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l6">
+                    <input class="validate" type="url" name="source" placeholder="Enter article source">
+                    <label for="source">Source:</label>
+                    <span class="helper-text" data-error="please provide a valid url!" data-success="great!"></span>
+                </div>
+                <div class="col s12 m12 l6">
+                    <div class="file-field input-field">
+                        <div class="btn light-blue darken-3 waves-effect waves-purple">
+                            <i class="material-icons">image</i>
+                            <input type="file" name="image">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" accept="image/*" type="text" name="image">
+                            <span class="helper-text" data-error="please provide a valid image file!" data-success="looking good!"></span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <textarea class="materialize-textarea validate" name="content" placeholder="Enter article content" maxlength="20000" required></textarea>
+                    <label for="content">Content:</label>
+                    <span class="helper-text" data-error="please give your article some content!" data-success="looks good!"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn light-blue darken-4 white-text waves-effect waves-yellow"><i class="material-icons left white-text">send</i>POST</button>
+        </form>
+    </div>
 </div>
 <%- include('../partials/footer') %>

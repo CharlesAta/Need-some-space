@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Oswald:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Enriqueta:wght@600&family=Montserrat:wght@900&family=Oswald:wght@200&family=Ramabhadra&family=Ubuntu+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anaheim&family=News+Cycle&display=swap');
 
 .heart {
     width: 100px;
@@ -28,37 +28,56 @@
 }
 
 // https://codepen.io/Moslim/pen/zwJPgL
+// Headline background
+
+#landing-page {
+  padding-bottom: 30px;
+  padding-top: 80px;
+  padding-left: 0;
+  background-image: url("https://media.giphy.com/media/Qx3wNMY8l3lGjtt0qq/giphy.gif");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 -20px 20px -10px #fff inset;
+  margin-top: -90px;
+  margin-left: -40px;
+}
 
 .headline {
 	font-family: "Montserrat";
 	text-align: center;
 	color: #FFF;
-	height: 20vh;
 	letter-spacing: 1px;
 }
 
 .headline h1 {
-	background-image: url(https://media4.giphy.com/media/l3c5VLYQ3MwVNA2ha/giphy.gif?cid=ecf05e47f5bcjjtydbc528flvnocluap4swqwdosqaxbzo2y&rid=giphy.gif&ct=g);
-	background-size: cover;
+	background-image: url(https://media.giphy.com/media/3ohzAN9PzGgxpQaiM8/giphy-downsized-large.gif);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
 	color: transparent;
 	-moz-background-clip: text;
 	-webkit-background-clip: text;
 	text-transform: uppercase;
 	font-size: 6rem;
 	line-height: .75;
-	margin: 20px 0;
+    margin: 20px -10px; 
+    padding-right: 0;
 }
 
 .headline h6 {
-	background-image: url(https://media4.giphy.com/media/l3c5VLYQ3MwVNA2ha/giphy.gif?cid=ecf05e47f5bcjjtydbc528flvnocluap4swqwdosqaxbzo2y&rid=giphy.gif&ct=g);
-	background-size: cover;
+	background-image: url(https://media.giphy.com/media/Kann6y6Z5CeZCOyWr5/giphy-downsized-large.gif);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
 	color: transparent;
 	-moz-background-clip: text;
 	-webkit-background-clip: text;
 	text-transform: uppercase;
 	font-size: 1.5rem;
 	line-height: .75;
-	margin: 20px 0;
+    margin: 20px -10px; 
+    padding-right: 0;
 }
 
 // https://codepen.io/Jintos/pen/crlxk
@@ -129,4 +148,64 @@ div.clip-text {
   background-position: 50% 50%;
 }
 
-/* Background image from http://thepatternlibrary.com/ and http://lorempixel.com */
+  
+#nav-color {
+  background-color: #001845;
+}
+
+#index-middle-par.parallax-container {
+  height: 400px;
+}
+
+#articles h3 {
+  font-family: 'Enriqueta', serif;
+  color:rgb(7, 2, 53)
+}
+
+#articles p {
+  font-family: 'Ubuntu Mono', monospace;
+  color:rgb(7, 2, 53)
+}
+
+#article-card {
+  background-color: #f1f1f1;
+}
+
+.show-login {
+  background-color: rgba(0, 4, 58, 0.5);
+}
+
+#nasa-apod {
+  padding: 20px;
+}
+
+#article-title {
+  font-family: 'Ramabhadra', sans-serif;
+}
+
+.article-info {
+  font-family: 'Anaheim', sans-serif;
+}
+
+#article-content {
+  font-family: 'News Cycle', sans-serif;
+  padding-top: 30px;
+}
+
+#comments-text-area {
+  margin-top: 50px;
+}
+
+
+@media screen and (max-width: 700px) {
+  #index-middle-par.parallax-container {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #index-middle-par.parallax-container {
+    height: 300px;
+  }
+}
+

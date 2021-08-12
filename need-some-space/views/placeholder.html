@@ -1,0 +1,29 @@
+<div class="container" style="background-image: url(<%= article.image %>)">
+    <h3 class="truncate"><%= article.title %></h3>
+</div>
+
+
+
+<% if (articles) { %>
+    <div class="container">
+        <div class="row">
+            <% articles.forEach((article) => { %>
+            <div class="col s12 m6 l3">
+                <a href="/articles/<%= article._id %>">
+                    <div style="background-image: url(<%= article.image %>); background-size: cover; width: 100px; height: 100px;">
+                        <p class="flow-text truncate"><%= article.title %></p>
+                    </div>
+                </a>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+
+
+    <div class="container row">
+        <% articles.forEach((article) => { %>
+        <a href="/articles/<%= article._id %>">
+            <div style="background-image: url(<%= article.image %>);" class="clip-text col s12 m12 l12 hoverable truncate"><%= article.title %></div>
+        </a>
+        <% }); %>
+        </div>

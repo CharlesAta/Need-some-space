@@ -34,10 +34,9 @@ function actOnPost(event) {
 };
 
 // Nav Bar 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    let options = {
-        edge, inDuration, outDuration, preventScrolling
-    } 
-    var instances = M.Sidenav.init(elems, options);
-  });
+
+$(document).ready(function() {
+    $('.sidenav').sidenav();
+    $('.parallax').parallax();
+    $('.tooltipped').tooltip();
+})

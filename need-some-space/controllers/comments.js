@@ -5,7 +5,7 @@ const Comment = require('../models/comment');
 async function create(req, res) {
     let article = await Article.findById(req.params.id);
     let user = await User.findById(req.user._id);
-
+    console.log(req.body);
     let comment = new Comment(req.body);
     comment.commenter = user._id;
     comment.username = user.name;

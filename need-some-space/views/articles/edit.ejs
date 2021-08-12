@@ -1,23 +1,50 @@
 <%- include('../partials/header') %>
-<h1>Edit Article</h1>
 <div class="container">
-<form action="/articles/<%= article._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-    <label for="title">Title:
-        <input type="text" name="title" placeholder="Enter article title" value="<%= article.title %>" required>
-    </label><br>
-    <label for="author">Author:
-        <input type="text" name="author" placeholder="Enter article author" value="<%= article.author %>">
-    </label><br>
-    <label for="source">Source:
-        <input type="url" name="source" placeholder="Enter article source" value="<%= article.source %>">
-    </label><br>
-    <label for="Image">Image:
-        <input type="file" name="image">
-    </label><br>
-    <label for="content">
-        <textarea name="content" placeholder="Enter article content" required><%= article.content %></textarea>
-    </label>
-    <button class="btn-large green lighten-2" type="submit"><i class="large material-icons left">update</i>Update</button>
-</form>
+    <h1 class="flow-text">Edit Article</h1>
+    <div class="row">
+        <form class="col s12 m12 l12" action="/articles/<%= article._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <input class="validate" type="text" name="title" placeholder="Enter article title" maxlength="60" value="<%= article.title %>" required>
+                    <label for="title">Title:</label>
+                    <span class="helper-text" data-error="please enter a title!" data-success="great title!"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <input class="validate" type="text" name="author" placeholder="Enter article author" value="<%= article.author %>" maxlength="30">
+                    <label for="author">Author:</label>
+                    <span class="helper-text" data-error="wrong!" data-success="great!"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l6">
+                    <input class="validate" type="url" name="source" placeholder="Enter article source" value="<%= article.source %>">
+                    <label for="source">Source:</label>
+                    <span class="helper-text" data-error="please provide a valid url!" data-success="great!"></span>
+                </div>
+                <div class="col s12 m12 l6">
+                    <div class="file-field input-field">
+                        <div class="btn light-blue darken-3 waves-effect waves-purple">
+                            <i class="material-icons">image</i>
+                            <input type="file" name="image">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" accept="image/*" type="text" name="image">
+                            <span class="helper-text" data-error="please provide a valid image file!" data-success="looking good!"></span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m12 l12">
+                    <textarea class="materialize-textarea validate" name="content" placeholder="Enter article content" maxlength="20000" required><%= article.content %></textarea>
+                    <label for="content">Content:</label>
+                    <span class="helper-text" data-error="please give your article some content!" data-success="looks good!"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn light-blue darken-4 white-text waves-effect waves-yellow"><i class="material-icons left white-text">update</i>UPDATE</button>
+        </form>
+    </div>
 </div>
 <%- include('../partials/footer') %>

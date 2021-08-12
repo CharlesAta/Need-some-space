@@ -1,42 +1,77 @@
 <%- include('../partials/header') %>
-<div class="headline">
-    <h1>need<br>some<br>space</h1>
-    <h6>the place for space</h6>
-</div>
+<header id="landing-page">
+    <div class="headline">
+        <h1>need<br>some<br>space</h1>
+        <h6>the place for space</h6>
+    </div>
+</header>
+
 
 <% if (nasaData) { %>
-<header>
-<h1>NASA Astronomy Photo of the Day</h1>
+<section id="nasa-apod">
 <div class="container">
-    <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="<%= nasaData.url %>">
-        </div>
-        <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"><%= nasaData.title %><i class="material-icons right">more_vert</i></span>
-        <p><%= nasaData.date %></p>
-        </div>
-        <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><%= nasaData.title %><i class="material-icons right">close</i></span>
-        <p><%= nasaData.explanation %></p>
+    <div class="row">
+        <div class="card col s12 m6 offset-m3 offset-l2 l8 light-blue lighten-5">
+            <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="<%= nasaData.url %>" alt="image from nasa">
+            </div>
+            <div class="card-content  light-blue lighten-5">
+            <span class="card-title activator grey-text text-darken-4 flow-text"><%= nasaData.title %><i class="material-icons right">more_vert</i></span>
+            <p class="flow-text"><%= nasaData.date %> - NASA's Astronomy Photo of the Day (APOD)</p>
+            </div>
+            <div class="card-reveal light-blue lighten-5">
+            <span class="card-title grey-text text-darken-4 flow-text"><%= nasaData.title %><i class="material-icons right">close</i></span>
+            <p class="flow-text"><%= nasaData.explanation %></p>
+            </div>
         </div>
     </div>
 </div>
-</header>
+</section>
 <% } %>
 
-<h1>Articles</h1>
-<% if (articles) { %>
-    <div class="container row">
-    <% articles.forEach((article) => { %>
-    <a href="/articles/<%= article._id %>">
-        <div style="background-image: url(<%= article.image %>);" class="clip-text col s12 m12 l12 hoverable truncate"><%= article.title %></div>
-    </a>
-    <% }); %>
+<div id="index-middle-par" class="parallax-container">
+    <div class="parallax">
+        <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/potw2113a.jpg" alt="" class="responsive-img">
     </div>
+</div>
+
+<% if (articles) { %>
+    <section class="container section" id="articles">
+        
+            <% articles.forEach((article, idx) => { %>
+            <a href="/articles/<%= article._id %>">
+            <div id="article-card" class="row hoverable z-depth-1">
+                <div class="col s7 l4">
+                    <img src="<%= article.image %>" class="responsive-img" />
+                </div>
+                <div class="col s5 l5 offset-l1">
+                    <h3 class="truncate"><%= article.title.toUpperCase() %></h3>
+                    <p class="truncate flow-text">Posted: <%= article.createdAt.toString().slice(0, 16) %></p>
+                    <p class="truncate flow-text"><%= article.content %>></p>
+                </div>
+            </div>
+            </a>
+            <% }); %>
+        
+    </section>
+
 <% } else { %>
     <h3>No articles yet</h3>
 <% } %>
+
+<div id="index-bottom-par" class="parallax-container">
+    <div class="parallax">
+        <img src="https://images-assets.nasa.gov/image/NHQ202108100009/NHQ202108100009~orig.jpg" alt="" class="responsive-img">
+    </div>
+</div>
+
+<footer>
+    <h5 class="center-align">
+        <a class="indigo-text text-darken-4" href="#landing-page">
+            <i class="material-icons">arrow_upward</i>Back To Top<i class="material-icons">arrow_upward</i>
+        </a>
+    </h5>
+</footer>
 
 
 <%- include('../partials/footer') %>
