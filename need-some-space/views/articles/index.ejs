@@ -1,23 +1,25 @@
 <%- include('../partials/header') %>
-<div class="title">
+<div class="headline">
     <h1>need<br>some<br>space</h1>
+    <h6>the place for space</h6>
 </div>
 
 <% if (nasaData) { %>
 <header>
 <h1>NASA Astronomy Photo of the Day</h1>
-<div class="container" style="background-image: url(<%= nasaData.url %>)">
-    <div class="container">
-        <h4>Title: <%= nasaData.title %></h4>
-    </div>
-    <div class="container">
-        <h6>Date: <%= nasaData.date %></h6>
-        <h6>Copyright: <%= nasaData.copyright %></h6>
-    </div>
-    <div class="container">
-        <p>
-            <%= nasaData.explanation %>
-        </p>
+<div class="container">
+    <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="<%= nasaData.url %>">
+        </div>
+        <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><%= nasaData.title %><i class="material-icons right">more_vert</i></span>
+        <p><%= nasaData.date %></p>
+        </div>
+        <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><%= nasaData.title %><i class="material-icons right">close</i></span>
+        <p><%= nasaData.explanation %></p>
+        </div>
     </div>
 </div>
 </header>
@@ -25,13 +27,13 @@
 
 <h1>Articles</h1>
 <% if (articles) { %>
+    <div class="container row">
     <% articles.forEach((article) => { %>
     <a href="/articles/<%= article._id %>">
-    <div class="container" style="background-image: url(<%= article.image %>)">
-        <h3 class="truncate"><%= article.title %></h3>
-    </div>
+        <div style="background-image: url(<%= article.image %>);" class="clip-text col s12 m12 l12 hoverable truncate"><%= article.title %></div>
     </a>
     <% }); %>
+    </div>
 <% } else { %>
     <h3>No articles yet</h3>
 <% } %>

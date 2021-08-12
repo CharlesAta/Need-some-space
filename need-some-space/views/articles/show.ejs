@@ -22,7 +22,7 @@
         onclick="actOnPost(event);"
         data-post-id="<%= article._id %>" 
         class="heart <%= article.likedBy.indexOf(user._id) >= 0 ? 'is-active' : '' %>"><span class="hide"><%= article.likedBy.indexOf(user._id) >= 0 ? 'Unlike' : 'Like'  %></span></div>
-        <span id="likes-count-<%= article._id %>"><%= article.likes %></span>
+        <span id="likes-count-<%= article._id %>" class="new badge cyan darken-4" data-badge-caption="likes"><%= article.likes ? article.likes : 0 %></span>
 </div>
 <% } %>
 
@@ -45,26 +45,22 @@
     <div class="container">
     <h2>Comments</h2>
     <% if (comments.length) { %>
-        <table>
-          <tbody>
+        <ul class="collection">
             <% comments.forEach((c) => { %>
-              <tr>
-                <td><%= c.username %></td>
-                <td><%= c.createdAt.toISOString().slice(0, 16) %></td>
-                <td><%= c.comment %></td>
-                <td><img class="circle" src="<%= c.avatar %>" /></td>
-                <% if (user && user._id.toString() === c.commenter.toString()) { %>
-                <td>
-                    <form action="/articles/<%= article._id %>/comments/<%= c._id%>?_method=DELETE" method="POST">
-                        <input type="submit" value="X" />
-                    </form>
-                </td>
-                <% }; %>
-              </tr>
+            <li class="collection-item avatar">
+              <img src="<%= c.avatar %>" alt="" class="circle">
+              <span class="title"><%= c.username %></span>
+              <p><%= c.createdAt.toString().slice(0, 34) %><br><br>
+                <%= c.comment %>
+              </p>
+              <% if (user && user._id.toString() === c.commenter.toString()) { %>
+                <form class="secondary-content" action="/articles/<%= article._id %>/comments/<%= c._id%>?_method=DELETE" method="POST">
+                    <button class="btn-floating btn-small grey lighten-5" type="submit"><i class="material-icons red-text">delete</i></button>
+                </form>
+              <% }; %>
+            </li>
             <% }) %>
-          </tbody>
-        </table>
-
+          </ul>
     <% } else { %>
         <h5>No Comments Yet</h5>
     <% } %>

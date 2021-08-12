@@ -2,7 +2,7 @@
 <h1>Profile</h1>
 <section>
     <div class="container center-align">
-        <img class="circle" src="<%= user.avatar %>">
+        <img class="circle z-depth-3" src="<%= user.avatar %>">
     </div>
     <div>
         <h3>Name: <%= user.name %></h3>
@@ -12,16 +12,25 @@
 
 <section>
     <h2>Articles Created: </h2>
+
+
     <% if (articles) { %>
     <div class="container">
         <div class="row">
             <% articles.forEach((article) => { %>
-            <div class="col s6 m3 l2">
-                <a href="/articles/<%= article._id %>">
-                    <div style="background-image: url(<%= article.image %>); background-size: cover; width: 100px; height: 100px;">
-                        <p class="flow-text truncate"><%= article.title %></p>
-                    </div>
-                </a>
+            <div class="col s12 m6 l3">
+            <div class="card small">
+                <div class="card-image">
+                <img src="<%= article.image %>">
+                <span class="card-title"><%= article.title %></span>
+                </div>
+                <div class="card-content">
+                <p><%= article.createdAt.toString().slice(0, 16) %></p>
+                </div>
+                <div class="card-action">
+                <a href="/articles/<%= article._id %>">Go to article</a>
+                </div>
+            </div>
             </div>
             <% }); %>
         </div>

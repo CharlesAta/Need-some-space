@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Oswald:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
 .heart {
     width: 100px;
     height: 100px;
@@ -23,3 +26,107 @@
 #delete-btn {
     display: inline;
 }
+
+// https://codepen.io/Moslim/pen/zwJPgL
+
+.headline {
+	font-family: "Montserrat";
+	text-align: center;
+	color: #FFF;
+	height: 20vh;
+	letter-spacing: 1px;
+}
+
+.headline h1 {
+	background-image: url(https://media4.giphy.com/media/l3c5VLYQ3MwVNA2ha/giphy.gif?cid=ecf05e47f5bcjjtydbc528flvnocluap4swqwdosqaxbzo2y&rid=giphy.gif&ct=g);
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: uppercase;
+	font-size: 6rem;
+	line-height: .75;
+	margin: 20px 0;
+}
+
+.headline h6 {
+	background-image: url(https://media4.giphy.com/media/l3c5VLYQ3MwVNA2ha/giphy.gif?cid=ecf05e47f5bcjjtydbc528flvnocluap4swqwdosqaxbzo2y&rid=giphy.gif&ct=g);
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: uppercase;
+	font-size: 1.5rem;
+	line-height: .75;
+	margin: 20px 0;
+}
+
+// https://codepen.io/Jintos/pen/crlxk
+
+
+div.clip-text {
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+    background-color: #000;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+
+/* Clip text element */
+.clip-text {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    display: inline-block;
+    margin: .25em;
+    padding: .5em .75em;
+    text-align: center;
+    /* Color fallback */
+    color: #fff;
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.clip-text:before,
+.clip-text:after {
+    position: absolute;
+    content: '';
+}
+
+/* Background */
+.clip-text:before {
+    z-index: -2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+}
+
+/* Text Background (black zone) */
+.clip-text:after {
+    position: absolute;
+    z-index: -1;
+    top: .3em;
+    right: .3em;
+    bottom: .3em;
+    left: .3em;
+    background-color: #000;
+}
+
+/* Use Background-size cover for photo background and no-repeat background */
+.clip-text--cover,
+.clip-text--cover:before {
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+            background-size: cover;
+  background-position: 50% 50%;
+}
+
+/* Background image from http://thepatternlibrary.com/ and http://lorempixel.com */
