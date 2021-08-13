@@ -17,6 +17,7 @@ async function index(req, res) {
         articles, 
         nasaData,
         index: true,
+        page: "Home"
     });
     
     } catch (err) {
@@ -25,7 +26,7 @@ async function index(req, res) {
 }
 
 function newArticle(req, res) {
-    res.render('articles/new', { user: req.user, });
+    res.render('articles/new', { user: req.user, page: "Create New Article"});
 }
 
 async function create(req, res) {
@@ -60,7 +61,7 @@ async function show(req, res) {
 
         let lastMod = article.createdAt.toISOString().slice(0, 16);
 
-        res.render('articles/show', { article, user: req.user, lastMod, originator, comments });
+        res.render('articles/show', { article, user: req.user, lastMod, originator, comments, page: "Article" });
 
     } catch (err) {
         console.log(err)
@@ -71,7 +72,7 @@ async function edit(req, res) {
     try {
         let article  = await Article.findById(req.params.id);
         
-        res.render('articles/edit', { user: req.user, article });
+        res.render('articles/edit', { user: req.user, article, page: "Edit Article" });
 
     } catch (err) {
         console.log(err);
@@ -102,7 +103,7 @@ async function update(req, res) {
 
         let lastMod = article.updatedAt.toISOString().slice(0, 16);
 
-        res.render('articles/show', { user: req.user, article, lastMod, originator, comments });
+        res.render('articles/show', { user: req.user, article, lastMod, originator, comments, page: "Update Article" });
 
     } catch (err) {
         console.log(err);
