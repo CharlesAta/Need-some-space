@@ -62,7 +62,7 @@
                 <span class="title flow-text"><%= c.username %></span>
                 <p><%= c.createdAt.toString().slice(0, 34) %></p>
                 <br><br>
-                <p class="flow-text"><%= c.comment %></p>
+                <p class="flow-text comment"><%= c.comment %></p>
               <% if (user && user._id.toString() === c.commenter.toString()) { %>
                 <form class="secondary-content" action="/articles/<%= article._id %>/comments/<%= c._id%>?_method=DELETE" method="POST">
                     <button class="btn-floating btn-small grey lighten-5" type="submit"><i class="material-icons red-text">delete</i></button>
@@ -80,7 +80,7 @@
             <form class="col s12 m12 l12" method="POST" action="/articles/<%= article._id %>/comments">
                 <div class="row">
                     <div class="input-field col s12 m12 l12">
-                        <textarea class="materialize-textarea" name="comment" placeholder="Leave a comment" maxlength="20000" required></textarea>
+                        <textarea id="enter-comment" class="materialize-textarea" name="comment" placeholder="Leave a comment" data-length="500" required></textarea>
                         <label for="comment">Comment:</label>
                     </div>
                         <button type="submit" class="btn-small btn-floating pulse light-blue darken-4 waves-effect waves-yellow"><i class="material-icons white-text">comment</i></button>

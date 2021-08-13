@@ -6,7 +6,10 @@ const commentSchema = new mongoose.Schema({
         ref: 'User'
     },
     username: String,
-    comment: String, 
+    comment: {
+        type: String, 
+        maxlength: 500,
+    },
     avatar: String,
 }, {
     timestamps: true,

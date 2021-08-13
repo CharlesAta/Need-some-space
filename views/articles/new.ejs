@@ -5,7 +5,7 @@
         <form class="col s12 m12 l12" action="/articles" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="input-field col s12 m12 l12">
-                    <input class="validate" type="text" name="title" placeholder="Enter article title" maxlength="100" autocomplete="off" required>
+                    <input id="new-title" class="validate" type="text" name="title" placeholder="Enter article title" data-length="100" maxlength="100" autocomplete="off" required>
                     <label for="title">Title:</label>
                     <span class="helper-text" data-error="please enter a title!" data-success="great title!"></span>
                 </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m12 l12">
-                    <textarea class="materialize-textarea validate" name="content" placeholder="Enter article content" maxlength="20000" autocomplete="off" required></textarea>
+                    <textarea id="new-content" class="materialize-textarea validate" name="content" placeholder="Enter article content" data-length="20000" maxlength="20000" autocomplete="off" required></textarea>
                     <label for="content">Content:</label>
                     <span class="helper-text" data-error="please give your article some content!" data-success="looks good!"></span>
                 </div>
