@@ -10,18 +10,18 @@ Need Some Space is a web app created to shar articles related to Space and Tech,
 
 Create your own posts, comment on others, enagage, be kind, and be curious!
 
-## :new_moon_with_face:Screenshots
+## :new_moon_with_face: Screenshots
 
-![Alt text]()
+![Alt text](https://github.com/CharlesAta/Need-some-space/blob/main/GithubImages/landing.png?raw=true)
 ---
-![Alt text]()
+![Alt text](https://github.com/CharlesAta/Need-some-space/blob/main/GithubImages/articles.png?raw=true)
 ---
-![Alt text]()
+![Alt text](https://github.com/CharlesAta/Need-some-space/blob/main/GithubImages/Screenshot%20from%202021-08-13%2000-53-53.png?raw=true)
 ---
-![Alt text]()
+![Alt text](https://github.com/CharlesAta/Need-some-space/blob/main/GithubImages/profile.png?raw=true)
 ---
 
-## :clubs: Technologies Used 
+## :satellite: Technologies Used 
 
 - HTML
 - CSS/SASS
@@ -35,7 +35,7 @@ Create your own posts, comment on others, enagage, be kind, and be curious!
 - OAuth 2.0
 - Heroku
 
-## Getting Started 
+## :alien: Getting Started 
 
 ### [Need Some Space](https://needsomespace.herokuapp.com/)
 
