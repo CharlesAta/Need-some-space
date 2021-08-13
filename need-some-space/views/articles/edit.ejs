@@ -5,21 +5,21 @@
         <form class="col s12 m12 l12" action="/articles/<%= article._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="input-field col s12 m12 l12">
-                    <input class="validate" type="text" name="title" placeholder="Enter article title" maxlength="60" value="<%= article.title %>" required>
+                    <input class="validate" type="text" name="title" placeholder="Enter article title" maxlength="60" value="<%= article.title %>" autocomplete="off" required>
                     <label for="title">Title:</label>
                     <span class="helper-text" data-error="please enter a title!" data-success="great title!"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m12 l12">
-                    <input class="validate" type="text" name="author" placeholder="Enter article author" value="<%= article.author %>" maxlength="30">
+                    <input class="validate" type="text" name="author" placeholder="Enter article author" value="<%= article.author %>" autocomplete="off" maxlength="30">
                     <label for="author">Author:</label>
                     <span class="helper-text" data-error="wrong!" data-success="great!"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m12 l6">
-                    <input class="validate" type="url" name="source" placeholder="Enter article source" value="<%= article.source %>">
+                    <input class="validate" type="url" name="source" placeholder="Enter article source" autocomplete="off" value="<%= article.source %>">
                     <label for="source">Source:</label>
                     <span class="helper-text" data-error="please provide a valid url!" data-success="great!"></span>
                 </div>
@@ -30,21 +30,26 @@
                             <input type="file" name="image">
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" accept="image/*" type="text" name="image">
-                            <span class="helper-text" data-error="please provide a valid image file!" data-success="looking good!"></span>
+                            <input class="file-path" accept="image/*" autocomplete="off" type="text" name="image">
                         </div> 
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m12 l12">
-                    <textarea class="materialize-textarea validate" name="content" placeholder="Enter article content" maxlength="20000" required><%= article.content %></textarea>
+                    <textarea class="materialize-textarea validate" name="content" placeholder="Enter article content" maxlength="20000" autocomplete="off" required><%= article.content %></textarea>
                     <label for="content">Content:</label>
                     <span class="helper-text" data-error="please give your article some content!" data-success="looks good!"></span>
                 </div>
             </div>
             <button type="submit" class="btn light-blue darken-4 white-text waves-effect waves-yellow"><i class="material-icons left white-text">update</i>UPDATE</button>
         </form>
+    </div>
+</div>
+
+<div id="edit-form-bottom-par" class="parallax-container">
+    <div class="parallax">
+        <img src="https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/stsci-h-p2016a-m-2000x1374.png" alt="" class="responsive-img">
     </div>
 </div>
 <%- include('../partials/footer') %>

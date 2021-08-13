@@ -26,7 +26,7 @@ function newArticle(req, res) {
 async function create(req, res) {
     if (!req.body.author) {
         req.body.author = req.user.name;
-    }    
+    }
 
     if (Object.keys(req.files).length !== 0 && req.files.constructor === Object) {
         req.body.image = await uploadCtrl.upload(req);
@@ -46,7 +46,7 @@ async function show(req, res) {
     let originator = await User.findById(article.originator);
 
     let comments = await Comment.where('_id').in(article.comments);
-    console.log(comments)
+
     let lastMod = article.createdAt.toISOString().slice(0, 16);
 
     res.render('articles/show', { article, user: req.user, lastMod, originator, comments })

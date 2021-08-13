@@ -16,7 +16,7 @@
     <div class="navbar-fixed">
       <nav id="nav-color" class=" <% if (typeof index !== 'undefined') { %> transparent <% } %> nav-wrapper">
           <div class="container"><% if (typeof index === 'undefined') { %>
-          <a href="/" class="brand-logo">NEED SOME SPACE</a>
+          <a href="/" class="brand-logo"><p class="flow-text">NEED SOME SPACE</p></a>
           <% } %>
           <a href="#" class="sidenav-trigger" data-target="mobile-links">
             <i class="material-icons grey-text text-darken-1">menu</i>
@@ -59,6 +59,12 @@
     <ul class="sidenav grey lighten-2" id="mobile-links">
       <% if (user) { %>
         <li>
+          <a href="/#nasa-apod">NASA APOD</a>
+        </li>
+        <li>
+          <a href="/#articles">Articles</a>
+        </li>
+        <li>
           <a href="/articles/new">Create Article</a>
         </li>
         <li>
@@ -68,6 +74,12 @@
           <a href="/logout">Log Out</a>
         </li>
         <% } else { %>
+        <li>
+          <a href="/#nasa-apod">NASA APOD</a>
+        </li>
+        <li>
+          <a href="/#articles">Articles</a>
+        </li>
         <li>
           <a href="/auth/google">Login</a>
         </li>

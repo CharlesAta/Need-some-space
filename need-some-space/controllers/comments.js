@@ -5,12 +5,14 @@ const Comment = require('../models/comment');
 async function create(req, res) {
     let article = await Article.findById(req.params.id);
     let user = await User.findById(req.user._id);
-    console.log(req.body);
+
     let comment = new Comment(req.body);
     comment.commenter = user._id;
     comment.username = user.name;
     comment.avatar = user.avatar;
     await comment.save();
+
+    
     
     article.comments.push(comment._id);
     await article.save();
@@ -31,6 +33,13 @@ async function deleteComment(req, res) {
 
     res.redirect(`/articles/${article._id}`);
 }
+
+
+var stringToHTML = function (str) {
+	var parser = new DOMParser();
+	var doc = parser.parseFromString(str, 'text/html');
+	return doc.body;
+};
 
 module.exports = {
     create,

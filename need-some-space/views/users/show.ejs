@@ -1,34 +1,36 @@
 <%- include('../partials/header') %>
-<h1>Profile</h1>
 <section>
     <div class="container center-align">
-        <img class="circle z-depth-3" src="<%= user.avatar %>">
+        <img id="profile-pic" class="circle z-depth-3" src="<%= user.avatar %>">
     </div>
-    <div>
-        <h3>Name: <%= user.name %></h3>
-        <h3>Email: <%= user.email %></h3>
+    <div class="container center-align">
+        <h3 class="flow-text"><%= user.name %></h3>
     </div>
 </section>
 
+<div id="profile-middle-par" class="parallax-container">
+    <div class="parallax">
+        <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/ngc6357_0.jpg" alt="" class="responsive-img">
+    </div>
+</div>
+
 <section>
-    <h2>Articles Created: </h2>
-
-
     <% if (articles) { %>
     <div class="container">
+        <h2 class="flow-text">My Articles:</h2>
         <div class="row">
             <% articles.forEach((article) => { %>
             <div class="col s12 m6 l3">
-            <div class="card small">
+            <div class="card small grey lighten-3">
                 <div class="card-image">
                 <img src="<%= article.image %>">
-                <span class="card-title"><%= article.title %></span>
+                <span id="profile-cards" class="card-title truncate"><%= article.title.toUpperCase() %></span>
                 </div>
                 <div class="card-content">
                 <p><%= article.createdAt.toString().slice(0, 16) %></p>
                 </div>
                 <div class="card-action">
-                <a href="/articles/<%= article._id %>">Go to article</a>
+                <a href="/articles/<%= article._id %>" class="deep-orange-text text-darken-4">Go to article</a>
                 </div>
             </div>
             </div>
@@ -39,4 +41,10 @@
         <h3>No articles created yet</h3>
     <% } %>
 </section>
+
+<div id="profile-bottom-par" class="parallax-container">
+    <div class="parallax">
+        <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/ngc6357_0.jpg" alt="" class="responsive-img">
+    </div>
+</div>
 <%- include('../partials/footer') %>

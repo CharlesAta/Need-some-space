@@ -5,8 +5,7 @@
     <h4 class="center-align flow-text article-info">Author: <%= article.author %></h3>
     <% if (article.source) { %>
     <h4 class="center-align flow-text article-info"><a href="<%= article.source %>" target="_blank">Go To Source</a></h3>
-    <% } %>
-    
+    <% } %>    
 </div>
 
 
@@ -14,13 +13,34 @@
     <div class="col s12 m12 l12 offset-s1">
         <img src="<%= article.image %>" class="responsive-img">
     </div>
-    <h5 class="flow-text article-info right">Last modified: <%= lastMod %></h3>
-    <% if (user && user._id.toString() === originator._id.toString()) { %>
-        <a class="btn-small blue lighten-3 indigo-text text-darken-4 tooltipped" href="/articles/<%= article._id %>/edit" data-position="bottom" data-tooltip="Edit Post"><i class="large material-icons">edit</i></a>
-        <form id="delete-btn" action="/articles/<%= article._id %>?_method=DELETE" method="POST">
-            <button class="left btn-small red accent-1 brown-text text-darken-4 tooltipped" type="submit" data-position="bottom" data-tooltip="Delete Post"><i class="large material-icons">delete</i></button>
-        </form>
-    <% } %>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s2 m2 l2">
+            <% if (user) { %>
+                <span id="likes-count-<%= article._id %>" class="new badge cyan darken-4 flow-text left" data-badge-caption="likes"><%= article.likes ? article.likes : 0 %></span>
+                <div 
+                onclick="actOnPost(event);"
+                data-post-id="<%= article._id %>" 
+                class="heart <%= article.likedBy.indexOf(user._id) >= 0 ? 'is-active' : '' %>">
+                    <span class="hide"><%= article.likedBy.indexOf(user._id) >= 0 ? 'Unlike' : 'Like'  %></span>
+                </div>
+            <% } %>
+        </div>
+        <% if (user && user._id.toString() === originator._id.toString()) { %>
+            <div class="col s2 m3 l2">
+                <div id="article-btns" class="">
+                    <a class="btn-small blue lighten-3 indigo-text text-darken-4 tooltipped" href="/articles/<%= article._id %>/edit" data-position="bottom" data-tooltip="Edit Post"><i class="large material-icons">edit</i></a>
+                    <form id="delete-btn" action="/articles/<%= article._id %>?_method=DELETE" method="POST">
+                        <button class="left btn-small red accent-1 brown-text text-darken-4 tooltipped" type="submit" data-position="bottom" data-tooltip="Delete Post"><i class="large material-icons">delete</i></button>
+                    </form>
+                </div>
+            </div>
+        <% } %>
+        <div class="col s5 m5 l5 offset-l3">
+            <h5 class="flow-text article-info right">Last modified: <%= lastMod %></h3>
+        </div>
+    </div>
 </div>
 
 <main>
@@ -30,8 +50,6 @@
         </p>
     </div>
 </main>
-
-<br><br>
 
 <section>
     <div class="container">
@@ -57,7 +75,6 @@
         <h5 class="flow-text">No Comments Yet</h5>
     <% } %>
     </div>
-
     <div id="comments-text-area" class="container">
         <div class="row">
             <form class="col s12 m12 l12" method="POST" action="/articles/<%= article._id %>/comments">
@@ -66,12 +83,17 @@
                         <textarea class="materialize-textarea" name="comment" placeholder="Leave a comment" maxlength="20000" required></textarea>
                         <label for="comment">Comment:</label>
                     </div>
-                        <button type="submit" class="btn-small btn-floating pulse light-blue darken-4 waves-effect waves-yellow tooltipped" data-position="left" data-tooltip="Comment!"><i class="material-icons white-text">comment</i></button>
+                        <button type="submit" class="btn-small btn-floating pulse light-blue darken-4 waves-effect waves-yellow"><i class="material-icons white-text">comment</i></button>
                 </div>
             </form>
         </div>
     </div>
-
 </section>
+
+<div id="show-bottom-par" class="parallax-container">
+    <div class="parallax">
+        <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/potw2049a.jpg" alt="" class="responsive-img">
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

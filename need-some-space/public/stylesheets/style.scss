@@ -197,15 +197,49 @@ div.clip-text {
 }
 
 
+#new-form-bottom-par {
+  height: 300px;
+}
+
+#profile-pic {
+  margin-top: 10px;
+  height: 20vh;
+}
+
+.brand-logo p {
+  margin-top: 0;
+}
+
+#profile-middle-par {
+  height: 200px;
+}
+
+#profile-cards {
+  background-color: rgba(49, 49, 49, 0.3);
+  width: 100%;
+}
+
 @media screen and (max-width: 700px) {
   #index-middle-par.parallax-container {
+    height: 200px; 
+  } 
+  #show-bottom-par {
     height: 200px;
+  }
+  #new-form-bottom-par, #edit-form-bottom-par, #profile-bottom-par {
+    height: 100px;
   }
 }
 
 @media screen and (max-width: 1000px) {
   #index-middle-par.parallax-container {
+    height: 300px; 
+  } 
+  #show-bottom-par {
     height: 300px;
+  }
+  #new-form-bottom-par, #edit-form-bottom-par, #profile-bottom-par  {
+    height: 200px;
   }
 }
 
