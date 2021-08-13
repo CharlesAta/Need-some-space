@@ -155,7 +155,8 @@ div.clip-text {
 
 #article-content {
   font-family: 'News Cycle', sans-serif;
-  padding-top: 30px; }
+  padding-top: 30px;
+  text-align: justify; }
 
 #comments-text-area {
   margin-top: 50px; }
@@ -175,8 +176,7 @@ div.clip-text {
 
 #profile-cards {
   background-color: rgba(49, 49, 49, 0.3);
-  width: 100%;
-}
+  width: 100%; }
 
 @media screen and (max-width: 700px) {
   #index-middle-par.parallax-container {

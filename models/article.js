@@ -5,11 +5,11 @@ let articleSchema = mongoose.Schema({
     title: {
         type: String,
         minlength: 1, 
-        maxlength: 60,
+        maxlength: 100,
     },
     author: {
         type: String, 
-        maxlength: 30,
+        maxlength: 50,
     },
     source: String,
     image: {

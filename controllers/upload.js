@@ -9,8 +9,8 @@ function base64_encode(image) {
 }
 
 async function upload(req, res) {    
+    let image = base64_encode(req.files.image.file);
     try {
-        let image = base64_encode(req.files.image.file);
         let imgurData = await axios.post(rootURL, {
             image: image,
             type: 'base64'
