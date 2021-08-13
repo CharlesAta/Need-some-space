@@ -138,12 +138,10 @@ async function like(req, res) {
             await Article.update({_id: req.params.id},
                 {$inc: {likes: counter}, $addToSet: {likedBy: req.user._id}},
                 {})
-                console.log("Liked", await Article.findById(req.params.id))
         } else {
             await Article.update({_id: req.params.id},
                 {$inc: {likes: counter}, $pull: { likedBy: req.user._id}},
                 {})
-            console.log("Unliked", await Article.findById(req.params.id))
         }
 
         res.send('');
