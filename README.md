@@ -41,10 +41,6 @@ Create your own posts, comment on others, enagage, be kind, and be curious!
 
 ### [Need Some Space](https://needsomespace.herokuapp.com/)
 
-### [Trello Board](https://trello.com/b/s1ePViWQ/project-2)
-
-### [Lucid Chart - ERD](https://lucid.app/lucidchart/97c717ab-4c83-4f79-b41a-72a19bedb63e/edit?beaconFlowId=DE9AB5C439E53109&page=0_0#)
-
 ## :stars: Future Enhancements
 
 - Allow users to delete their accounts.
