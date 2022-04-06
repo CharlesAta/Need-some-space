@@ -10,7 +10,7 @@ Need Some Space is a web app created to share articles related to Space and Tech
 
 Think Reddit, but for space (basically r/space but with :sparkles:pizzazz:sparkles:)
 
-Create your own posts, comment on others, enagage, be kind, and be curious!
+Create your own posts, comment on others, engage, be kind, and be curious!
 
 ## :new_moon_with_face: Screenshots
 
