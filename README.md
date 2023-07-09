@@ -10,7 +10,7 @@ Need Some Space is a web app created to share articles related to Space and Tech
 
 Think Reddit, but for space (basically r/space but with :sparkles:pizzazz:sparkles:)
 
-Create your own posts, comment on others, enagage, be kind, and be curious!
+Create your own posts, comment on others, engage, be kind, and be curious!
 
 ## :new_moon_with_face: Screenshots
 
@@ -40,10 +40,6 @@ Create your own posts, comment on others, enagage, be kind, and be curious!
 ## :alien: Getting Started 
 
 ### [Need Some Space](https://needsomespace.herokuapp.com/)
-
-### [Trello Board](https://trello.com/b/s1ePViWQ/project-2)
-
-### [Lucid Chart - ERD](https://lucid.app/lucidchart/97c717ab-4c83-4f79-b41a-72a19bedb63e/edit?beaconFlowId=DE9AB5C439E53109&page=0_0#)
 
 ## :stars: Future Enhancements
 
